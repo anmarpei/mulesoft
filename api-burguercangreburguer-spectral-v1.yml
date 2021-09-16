@@ -1,0 +1,114 @@
+#Test jsonpath-plus: https://extendsclass.com/jsonpath-tester.html
+
+extends: spectral:oas
+rules:
+  example-value-or-externalValue: false
+  oas3-unused-components-schema: false # needed by inter-file references e.g. Voice API
+  oas3-valid-content-schema-example: false
+  oas3-valid-oas-content-example: false
+  oas3-valid-oas-parameter-example: false
+  oas3-valid-parameter-schema-example: false
+  oas3-valid-schema-example: false
+  openapi-tags: false
+  operation-description: false
+  operation-tags: false
+
+################################################################################################
+# INICIO - General Functions
+################################################################################################
+  
+
+
+
+
+  # REGLA02
+  uri-slashbar-not-in-end:
+    description: "La URI no debe acabar en barra '/'."
+    severity: error
+    recommended: true
+    message: "Check path ends without slashbar. {{value}} is not a valid path."
+    given: "$.paths."
+    then:
+      function: pattern
+      functionOptions:
+        match: "^.*[^/]$"
+
+
+### VERS##: Versioning.
+
+  # VERS01 - Require 3-part Semantic Versions as the spec versions.
+  semantic-version:
+    description: "Las API estarán versionadas por tres (3) dígitos."
+    severity: error
+    recommended: true
+    message: "VERS01: Specs should follow semantic versioning. {{value}} is not a valid version."
+    given: $.info.version
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([0-9]+\\.[0-9]+\\.[0-9])$"
+ 
+
+  # CONT03 - For booleans, prefer preffix like 'is' or 'has' and followed by an uppercase letter or number.
+  content-boolean-prefix-names:
+    description: "Los campos booleanos deben empezar por is o has y siguen por mayúscula o número."
+    severity: error
+    message: "CONT03: Invalid property name for boolean type: {{value}} (boolean may start with 'is' or 'has' and followed by capital letter or number to be more descriptive. expected: isErased, hasStock)."
+    recommended: true
+    given: "$.definitions.*.properties..[?(@.type=='boolean')]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(is|has)[A-Z0-9][a-zA-Z0-9]*"
+
+ 
+  # CONT09 - Black-list of application words
+  black-list-application-words:
+    description: "Se limita el uso de las siguientes palabras que deberán obviarse en la redacción del contrato."
+    severity: warn
+    message: "CONT09: Invalid property value: {{value}} (expected: Please, review application black list.)."
+    recommended: true
+    resolved: false
+    given: ["$.info..description", 
+            "$.paths..description", 
+            "$.parameters..description", 
+            "$.definitions..description",
+            "$.info..title", 
+            "$.info..name", 
+            "$.tags..name", 
+            "$.parameters..name", 
+            "$.paths..summary", 
+            "$.paths..operationId"]
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\b(cangrejo|bob|esponja)\\b"
+
+
+  # SWAG09 - Suggest convert operation to POST if it's a GET operation with too many query parameters.
+  maxLength-in-string-properties:
+    description: "Las propiedades de tipo cadena deben contener la propiedad maxLength (máxima longitud de cadena)."
+    given: ["$.definitions.*.properties.[?(@.type==\"string\")]", "$.definitions.*.properties.[?(@.type==\"string\")]"]
+    message: "SWAG09: String-type properties MUST contain maxLength property (maximum length of string)."
+    recommended: true
+    severity: info
+    then:
+      field: "maxLength"
+      function: truthy
+
+  # SWAG10 - Normalization -Definition must have an example.
+  type-properties-must-have-example:
+    description: "La definición de las propiedades del objeto deben tener un ejemplo."
+    given: "$.definitions.*.properties.[]"
+    message: "SWAG10: Object properties must have an example."
+    recommended: true
+    severity: info
+    then:
+      field: "$..example"
+      function: truthy
+
+
+################################################################################################
+# FIN - General Functions
+################################################################################################
+  
