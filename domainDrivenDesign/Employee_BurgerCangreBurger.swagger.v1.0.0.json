@@ -1,0 +1,918 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Employee - BCB API.",
+        "description": "API that manages Burguer Cangre-Burguer Employee integrations.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Eugene H. Cangrejo"
+        }
+    },
+    "host": "api.example.com",
+    "basePath": "/bcb/employee/v1",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "employee",
+            "description": "Operations that involves employees information."
+        }
+    ],
+    "paths": {
+        "/bcb/stores/{storeId}/employees": {
+            "get": {
+                "summary": "Gets an employee information.",
+                "description": "Gets an employee detail information by identifier.",
+                "operationId": "getEmployeeList",
+                "tags": [
+                    "employee"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/GetEmployeeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/stores/{storeId}/employees/{employeeId}": {
+            "get": {
+                "summary": "Gets an employee information.",
+                "description": "Gets an employee detail information by identifier.",
+                "operationId": "getEmployeeByStoreId",
+                "tags": [
+                    "employee"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/EmployeeType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "employee"
+                ],
+                "summary": "Create a new employee for a store.",
+                "description": "Create a new employee for a store using store identifier.",
+                "operationId": "createEmployee",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "employee"
+                ],
+                "summary": "Modify an employee data.",
+                "description": "Modify an employee information.",
+                "operationId": "patchEmployee",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/EmployeeType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/EmployeeType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "employee"
+                ],
+                "summary": "Edit employee.",
+                "description": "Edit an employee using the storeId and overwrites all fields for the resource.",
+                "operationId": "putEmployee",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    },
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "description": "Employee information.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmployeeType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entity updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/EmployeeType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Invalid format or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Server exception.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "employee"
+                ],
+                "summary": "Delete an employee related to a store.",
+                "description": "Delete an employee by identifier and store identifier.",
+                "operationId": "deleteEmployee",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "204": {
+                        "description": "Entity deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/stores/{storeId}/deliveries/{deliveryId}": {
+            "patch": {
+                "tags": [
+                    "delivery"
+                ],
+                "summary": "Modify a delivery petition data.",
+                "description": "Modify a delivery petition data by identifier.",
+                "operationId": "patchDelivery",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "storeId",
+                        "type": "number",
+                        "description": "Store Identifier.",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "deliveryId",
+                        "type": "number",
+                        "description": "Delivery Identifier.",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "deliveryModification"
+                            ],
+                            "properties": {
+                                "deliveryModification": {
+                                    "$ref": "#/definitions/DeliveryType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/DeliveryType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "delivery"
+                ],
+                "summary": "Delete a delivery related to a store.",
+                "description": "Delete a delivery by store and delivery identifier.",
+                "operationId": "deleteDelivery",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "in": "path",
+                        "name": "deliveryId",
+                        "type": "number",
+                        "description": "Delivery Identifier.",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "deliveryModification"
+                            ],
+                            "properties": {
+                                "deliveryModification": {
+                                    "$ref": "#/definitions/DeliveryType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "204": {
+                        "description": "Entity deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/stores/{storeId}/delivery": {
+            "post": {
+                "tags": [
+                    "delivery"
+                ],
+                "summary": "Create a new delivery from a store.",
+                "description": "Create a new delivery service from a store by its identifier.",
+                "operationId": "createDelivery",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/stores/{storeId}/employees/{employeeId}/calendar": {
+            "get": {
+                "summary": "Gets a calendar information.",
+                "description": "Gets a calendar related to an employee and store information by identifier.",
+                "operationId": "getCalendarList",
+                "tags": [
+                    "calendar"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/GetCalendarResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "calendar"
+                ],
+                "summary": "Create a new employee for a store.",
+                "description": "Create a new employee for a store using store identifier.",
+                "operationId": "createCalendar",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/CalendarEmployeeType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "calendar"
+                ],
+                "summary": "Modify a calendar data.",
+                "description": "Modify a calendar by identifier.",
+                "operationId": "patchCalendar",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "storeId",
+                        "type": "number",
+                        "description": "Store Identifier.",
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/CalendarEmployeeType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/DeliveryType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "calendar"
+                ],
+                "summary": "Delete a calendar related to a store.",
+                "description": "Delete a calendar by store and calendar identifier.",
+                "operationId": "deleteCalendar",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storeId"
+                    },
+                    {
+                        "$ref": "#/parameters/employeeId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/CalendarEmployeeType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "204": {
+                        "description": "Entity deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GetEmployeeResponse": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EmployeeType"
+                    }
+                }
+            }
+        },
+        "GetCalendarResponse": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CalendarType"
+                    }
+                }
+            }
+        },
+        "CalendarType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Calendar identifier."
+                },
+                "year": {
+                    "type": "string",
+                    "description": "Calendar year."
+                },
+                "store": {
+                    "$ref": "#/definitions/StoreType"
+                },
+                "employee": {
+                    "$ref": "#/definitions/EmployeeType"
+                }
+            }
+        },
+        "CalendarEmployeeType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Calendar identifier."
+                },
+                "year": {
+                    "type": "string",
+                    "description": "Calendar year."
+                },
+                "workDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Work date to insert about vacations or other kind of no-work day."
+                },
+                "store": {
+                    "$ref": "#/definitions/StoreType"
+                },
+                "employee": {
+                    "$ref": "#/definitions/EmployeeType"
+                }
+            }
+        },
+        "DeliveryType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Delivery identifier."
+                },
+                "storeId": {
+                    "type": "number",
+                    "description": "Store identifier."
+                },
+                "clientId": {
+                    "type": "number",
+                    "description": "Delivery platform client identifier."
+                },
+                "fromDateDelivery": {
+                    "type": "string",
+                    "description": "Date and time when delivery starts.",
+                    "format": "date-time"
+                },
+                "toDateDelivery": {
+                    "type": "string",
+                    "description": "Date and time when delivery has been finished.",
+                    "format": "date-time"
+                },
+                "updatingDate": {
+                    "type": "string",
+                    "description": "Date and time of source update.",
+                    "format": "date-time"
+                }
+            }
+        },
+        "EmployeeType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Employee identifier.",
+                    "example": 101
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Employee name.",
+                    "example": "Antonio Martínez"
+                },
+                "employeeCode": {
+                    "type": "string",
+                    "pattern": "((^| )[A-C]-[0-9]+)",
+                    "description": "Employee code identification.",
+                    "example": "A-002"
+                },
+                "store": {
+                    "$ref": "#/definitions/StoreType"
+                }
+            }
+        },
+        "StoreType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Store identifier.",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Store name.",
+                    "example": "BCB 01"
+                }
+            }
+        },
+        "ErrorMng": {
+            "type": "object",
+            "required": [
+                "code",
+                "description"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "employeeId": {
+            "in": "path",
+            "name": "employeeId",
+            "type": "number",
+            "description": "Employee identifier.",
+            "required": true
+        },
+        "storeId": {
+            "in": "path",
+            "name": "storeId",
+            "type": "number",
+            "description": "Store identifier.",
+            "required": true
+        }
+    }
+}
