@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/calendar/v1",
+    "basePath": "/bcb/calendars/v1",
     "schemes": [
         "https"
     ],

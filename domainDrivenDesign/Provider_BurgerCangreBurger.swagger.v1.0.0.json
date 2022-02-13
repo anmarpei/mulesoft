@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/provider/v1",
+    "basePath": "/bcb/providers/v1",
     "schemes": [
         "https"
     ],
@@ -27,11 +27,6 @@
                 "operationId": "getProviderList",
                 "tags": [
                     "provider"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/storeId"
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -155,7 +150,7 @@
                 "operationId": "patchProvider",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/ProviderId"
+                        "$ref": "#/parameters/providerId"
                     },
                     {
                         "in": "body",

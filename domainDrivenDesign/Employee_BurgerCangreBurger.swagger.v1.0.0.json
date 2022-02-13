@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/employee/v1",
+    "basePath": "/bcb/employees/v1",
     "schemes": [
         "https"
     ],

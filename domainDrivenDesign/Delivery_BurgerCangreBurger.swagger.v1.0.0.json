@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/delivery/v1",
+    "basePath": "/bcb/deliveries/v1",
     "schemes": [
         "https"
     ],
@@ -161,7 +161,7 @@
                 }
             }
         },
-        "/bcb/stores/{storeId}/delivery": {
+        "/bcb/stores/{storeId}/deliveries": {
             "post": {
                 "tags": [
                     "delivery"
