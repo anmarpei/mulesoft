@@ -1,32 +1,32 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Employee - BCB API.",
-        "description": "API that manages Burguer Cangre-Burguer Employee integrations.",
+        "title": "Provider - BCB API.",
+        "description": "API that manages Burguer Cangre-Burguer Provider integrations.",
         "version": "1.0.0",
         "contact": {
             "name": "Eugene H. Cangrejo"
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/employee/v1",
+    "basePath": "/bcb/provider/v1",
     "schemes": [
         "https"
     ],
     "tags": [
         {
-            "name": "employee",
-            "description": "Operations that involves employees information."
+            "name": "provider",
+            "description": "Operations that involves providers information."
         }
     ],
     "paths": {
-        "/bcb/stores/{storeId}/employees": {
+        "/bcb/providers": {
             "get": {
-                "summary": "Gets an employee information.",
-                "description": "Gets an employee detail information by identifier.",
-                "operationId": "getEmployeeList",
+                "summary": "Gets a provider information.",
+                "description": "Gets a provider detail information by identifier.",
+                "operationId": "getProviderList",
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
                 "parameters": [
                     {
@@ -37,7 +37,7 @@
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/GetEmployeeResponse"
+                            "$ref": "#/definitions/GetProviderResponse"
                         }
                     },
                     "400": {
@@ -64,27 +64,24 @@
                 }
             }
         },
-        "/bcb/stores/{storeId}/employees/{employeeId}": {
+        "/bcb/providers/{providerId}": {
             "get": {
-                "summary": "Gets an employee information.",
-                "description": "Gets an employee detail information by identifier.",
-                "operationId": "getEmployeeByStoreId",
+                "summary": "Gets an Provider information.",
+                "description": "Gets an Provider detail information by identifier.",
+                "operationId": "getProviderByStoreId",
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/providerId"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/ProviderType"
                         }
                     },
                     "400": {
@@ -112,17 +109,14 @@
             },
             "post": {
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
-                "summary": "Create a new employee for a store.",
-                "description": "Create a new employee for a store using store identifier.",
-                "operationId": "createEmployee",
+                "summary": "Create a new provider for a store.",
+                "description": "Create a new Provider.",
+                "operationId": "createProvider",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/providerId"
                     }
                 ],
                 "responses": {
@@ -154,17 +148,14 @@
             },
             "patch": {
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
-                "summary": "Modify an employee data.",
-                "description": "Modify an employee information.",
-                "operationId": "patchEmployee",
+                "summary": "Modify an Provider data.",
+                "description": "Modify an provider information.",
+                "operationId": "patchProvider",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/ProviderId"
                     },
                     {
                         "in": "body",
@@ -178,7 +169,7 @@
                             ],
                             "properties": {
                                 "modification": {
-                                    "$ref": "#/definitions/EmployeeType"
+                                    "$ref": "#/definitions/ProviderType"
                                 }
                             }
                         }
@@ -188,7 +179,7 @@
                     "200": {
                         "description": "Resource updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/ProviderType"
                         }
                     },
                     "202": {
@@ -219,25 +210,22 @@
             },
             "put": {
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
-                "summary": "Edit employee.",
-                "description": "Edit an employee using the storeId and overwrites all fields for the resource.",
-                "operationId": "putEmployee",
+                "summary": "Edit Provider.",
+                "description": "Edit an Provider using the providerId and overwrites all fields for the resource.",
+                "operationId": "putProvider",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/providerId"
                     },
                     {
                         "name": "data",
                         "in": "body",
-                        "description": "Employee information.",
+                        "description": "Provider information.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/ProviderType"
                         }
                     }
                 ],
@@ -245,7 +233,7 @@
                     "200": {
                         "description": "Entity updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/ProviderType"
                         }
                     },
                     "202": {
@@ -276,17 +264,14 @@
             },
             "delete": {
                 "tags": [
-                    "employee"
+                    "provider"
                 ],
-                "summary": "Delete an employee related to a store.",
-                "description": "Delete an employee by identifier and store identifier.",
-                "operationId": "deleteEmployee",
+                "summary": "Delete an Provider related to a store.",
+                "description": "Delete an Provider by identifier and store identifier.",
+                "operationId": "deleteProvider",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/providerId"
                     }
                 ],
                 "responses": {
@@ -322,7 +307,7 @@
         }
     },
     "definitions": {
-        "GetEmployeeResponse": {
+        "GetProviderResponse": {
             "type": "object",
             "required": [
                 "data"
@@ -331,136 +316,29 @@
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/EmployeeType"
+                        "$ref": "#/definitions/ProviderType"
                     }
                 }
             }
         },
-        "GetCalendarResponse": {
-            "type": "object",
-            "required": [
-                "data"
-            ],
-            "properties": {
-                "data": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/CalendarType"
-                    }
-                }
-            }
-        },
-        "CalendarType": {
+        "ProviderType": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer",
-                    "description": "Calendar identifier."
-                },
-                "year": {
-                    "type": "string",
-                    "description": "Calendar year."
-                },
-                "store": {
-                    "$ref": "#/definitions/StoreType"
-                },
-                "employee": {
-                    "$ref": "#/definitions/EmployeeType"
-                }
-            }
-        },
-        "CalendarEmployeeType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Calendar identifier."
-                },
-                "year": {
-                    "type": "string",
-                    "description": "Calendar year."
-                },
-                "workDate": {
-                    "type": "string",
-                    "format": "date",
-                    "description": "Work date to insert about vacations or other kind of no-work day."
-                },
-                "store": {
-                    "$ref": "#/definitions/StoreType"
-                },
-                "employee": {
-                    "$ref": "#/definitions/EmployeeType"
-                }
-            }
-        },
-        "DeliveryType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Delivery identifier."
-                },
-                "storeId": {
-                    "type": "number",
-                    "description": "Store identifier."
-                },
-                "clientId": {
-                    "type": "number",
-                    "description": "Delivery platform client identifier."
-                },
-                "fromDateDelivery": {
-                    "type": "string",
-                    "description": "Date and time when delivery starts.",
-                    "format": "date-time"
-                },
-                "toDateDelivery": {
-                    "type": "string",
-                    "description": "Date and time when delivery has been finished.",
-                    "format": "date-time"
-                },
-                "updatingDate": {
-                    "type": "string",
-                    "description": "Date and time of source update.",
-                    "format": "date-time"
-                }
-            }
-        },
-        "EmployeeType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Employee identifier.",
+                    "description": "Provider identifier.",
                     "example": 101
                 },
                 "name": {
                     "type": "string",
-                    "description": "Employee name.",
-                    "example": "Antonio Martínez"
+                    "description": "Provider name.",
+                    "example": "Hornos HNH"
                 },
-                "employeeCode": {
+                "ProviderCode": {
                     "type": "string",
                     "pattern": "((^| )[A-C]-[0-9]+)",
-                    "description": "Employee code identification.",
+                    "description": "Provider code identification.",
                     "example": "A-002"
-                },
-                "store": {
-                    "$ref": "#/definitions/StoreType"
-                }
-            }
-        },
-        "StoreType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Store identifier.",
-                    "example": 1
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Store name.",
-                    "example": "BCB 01"
                 }
             }
         },
@@ -481,18 +359,11 @@
         }
     },
     "parameters": {
-        "employeeId": {
+        "providerId": {
             "in": "path",
-            "name": "employeeId",
+            "name": "providerId",
             "type": "number",
-            "description": "Employee identifier.",
-            "required": true
-        },
-        "storeId": {
-            "in": "path",
-            "name": "storeId",
-            "type": "number",
-            "description": "Store identifier.",
+            "description": "Provider identifier.",
             "required": true
         }
     }

@@ -16,7 +16,7 @@
     "tags": [
         {
             "name": "delivery",
-            "description": "Operations that involves delivery."
+            "description": "Operations that involves delivery information."
         }
     ],
     "paths": {
