@@ -1,32 +1,32 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Employee - GFF API.",
-        "description": "API that manages Green Family Farm Employee integrations.",
+        "title": "Farmer - GFF API.",
+        "description": "API that manages Green Family Farm farmer integrations.",
         "version": "1.0.0",
         "contact": {
             "name": "Bill Green"
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/employees/v1",
+    "basePath": "/gff/farmers/v1",
     "schemes": [
         "https"
     ],
     "tags": [
         {
-            "name": "employee",
-            "description": "Operations that involves employees information."
+            "name": "farmer",
+            "description": "Operations that involves farmers information."
         }
     ],
     "paths": {
-        "/bcb/stores/{storeId}/employees": {
+        "/gff/stores/{storeId}/farmers": {
             "get": {
-                "summary": "Gets an employee information.",
-                "description": "Gets an employee detail information by identifier.",
-                "operationId": "getEmployeeList",
+                "summary": "Gets an farmer information.",
+                "description": "Gets an farmer detail information by identifier.",
+                "operationId": "getfarmerList",
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
                 "parameters": [
                     {
@@ -37,7 +37,7 @@
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/GetEmployeeResponse"
+                            "$ref": "#/definitions/GetfarmerResponse"
                         }
                     },
                     "400": {
@@ -64,27 +64,27 @@
                 }
             }
         },
-        "/bcb/stores/{storeId}/employees/{employeeId}": {
+        "/gff/stores/{storeId}/farmers/{farmerId}": {
             "get": {
-                "summary": "Gets an employee information.",
-                "description": "Gets an employee detail information by identifier.",
-                "operationId": "getEmployeeByStoreId",
+                "summary": "Gets an farmer information.",
+                "description": "Gets an farmer detail information by identifier.",
+                "operationId": "getfarmerByStoreId",
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
                 "parameters": [
                     {
                         "$ref": "#/parameters/storeId"
                     },
                     {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/farmerId"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/farmerType"
                         }
                     },
                     "400": {
@@ -112,17 +112,17 @@
             },
             "post": {
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
-                "summary": "Create a new employee for a store.",
-                "description": "Create a new employee for a store using store identifier.",
-                "operationId": "createEmployee",
+                "summary": "Create a new farmer for a store.",
+                "description": "Create a new farmer for a store using store identifier.",
+                "operationId": "createfarmer",
                 "parameters": [
                     {
                         "$ref": "#/parameters/storeId"
                     },
                     {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/farmerId"
                     }
                 ],
                 "responses": {
@@ -154,17 +154,17 @@
             },
             "patch": {
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
-                "summary": "Modify an employee data.",
-                "description": "Modify an employee information.",
-                "operationId": "patchEmployee",
+                "summary": "Modify an farmer data.",
+                "description": "Modify an farmer information.",
+                "operationId": "patchfarmer",
                 "parameters": [
                     {
                         "$ref": "#/parameters/storeId"
                     },
                     {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/farmerId"
                     },
                     {
                         "in": "body",
@@ -178,7 +178,7 @@
                             ],
                             "properties": {
                                 "modification": {
-                                    "$ref": "#/definitions/EmployeeType"
+                                    "$ref": "#/definitions/farmerType"
                                 }
                             }
                         }
@@ -188,7 +188,7 @@
                     "200": {
                         "description": "Resource updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/farmerType"
                         }
                     },
                     "202": {
@@ -219,25 +219,25 @@
             },
             "put": {
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
-                "summary": "Edit employee.",
-                "description": "Edit an employee using the storeId and overwrites all fields for the resource.",
-                "operationId": "putEmployee",
+                "summary": "Edit farmer.",
+                "description": "Edit an farmer using the storeId and overwrites all fields for the resource.",
+                "operationId": "putfarmer",
                 "parameters": [
                     {
                         "$ref": "#/parameters/storeId"
                     },
                     {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/farmerId"
                     },
                     {
                         "name": "data",
                         "in": "body",
-                        "description": "Employee information.",
+                        "description": "farmer information.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/farmerType"
                         }
                     }
                 ],
@@ -245,7 +245,7 @@
                     "200": {
                         "description": "Entity updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/EmployeeType"
+                            "$ref": "#/definitions/farmerType"
                         }
                     },
                     "202": {
@@ -276,17 +276,17 @@
             },
             "delete": {
                 "tags": [
-                    "employee"
+                    "farmer"
                 ],
-                "summary": "Delete an employee related to a store.",
-                "description": "Delete an employee by identifier and store identifier.",
-                "operationId": "deleteEmployee",
+                "summary": "Delete an farmer related to a store.",
+                "description": "Delete an farmer by identifier and store identifier.",
+                "operationId": "deletefarmer",
                 "parameters": [
                     {
                         "$ref": "#/parameters/storeId"
                     },
                     {
-                        "$ref": "#/parameters/employeeId"
+                        "$ref": "#/parameters/farmerId"
                     }
                 ],
                 "responses": {
@@ -322,7 +322,7 @@
         }
     },
     "definitions": {
-        "GetEmployeeResponse": {
+        "GetfarmerResponse": {
             "type": "object",
             "required": [
                 "data"
@@ -331,7 +331,7 @@
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/EmployeeType"
+                        "$ref": "#/definitions/farmerType"
                     }
                 }
             }
@@ -364,12 +364,12 @@
                 "store": {
                     "$ref": "#/definitions/StoreType"
                 },
-                "employee": {
-                    "$ref": "#/definitions/EmployeeType"
+                "farmer": {
+                    "$ref": "#/definitions/farmerType"
                 }
             }
         },
-        "CalendarEmployeeType": {
+        "CalendarfarmerType": {
             "type": "object",
             "properties": {
                 "id": {
@@ -388,8 +388,8 @@
                 "store": {
                     "$ref": "#/definitions/StoreType"
                 },
-                "employee": {
-                    "$ref": "#/definitions/EmployeeType"
+                "farmer": {
+                    "$ref": "#/definitions/farmerType"
                 }
             }
         },
@@ -425,23 +425,23 @@
                 }
             }
         },
-        "EmployeeType": {
+        "farmerType": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer",
-                    "description": "Employee identifier.",
+                    "description": "farmer identifier.",
                     "example": 101
                 },
                 "name": {
                     "type": "string",
-                    "description": "Employee name.",
+                    "description": "farmer name.",
                     "example": "Antonio Martínez"
                 },
-                "employeeCode": {
+                "farmerCode": {
                     "type": "string",
                     "pattern": "((^| )[A-C]-[0-9]+)",
-                    "description": "Employee code identification.",
+                    "description": "farmer code identification.",
                     "example": "A-002"
                 },
                 "store": {
@@ -481,11 +481,11 @@
         }
     },
     "parameters": {
-        "employeeId": {
+        "farmerId": {
             "in": "path",
-            "name": "employeeId",
+            "name": "farmerId",
             "type": "number",
-            "description": "Employee identifier.",
+            "description": "farmer identifier.",
             "required": true
         },
         "storeId": {

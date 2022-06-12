@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/trainings/v1",
+    "basePath": "/gff/trainings/v1",
     "schemes": [
         "https"
     ],
@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/bcb/trainings": {
+        "/gff/trainings": {
             "get": {
                 "summary": "Gets a training information.",
                 "description": "Gets a training detail information by identifier.",
@@ -59,10 +59,10 @@
                 }
             }
         },
-        "/bcb/trainings/{trainingId}": {
+        "/gff/trainings/{trainingId}": {
             "get": {
-                "summary": "Gets an training information.",
-                "description": "Gets an training detail information by identifier.",
+                "summary": "Gets a training information.",
+                "description": "Gets a training detail information by identifier.",
                 "operationId": "gettrainingByStoreId",
                 "tags": [
                     "training"
@@ -145,8 +145,8 @@
                 "tags": [
                     "training"
                 ],
-                "summary": "Modify an training data.",
-                "description": "Modify an training information.",
+                "summary": "Modify a training data.",
+                "description": "Modify a training information.",
                 "operationId": "patchtraining",
                 "parameters": [
                     {
@@ -208,7 +208,7 @@
                     "training"
                 ],
                 "summary": "Edit training.",
-                "description": "Edit an training using the trainingId and overwrites all fields for the resource.",
+                "description": "Edit a training using the trainingId and overwrites all fields for the resource.",
                 "operationId": "puttraining",
                 "parameters": [
                     {
@@ -261,8 +261,8 @@
                 "tags": [
                     "training"
                 ],
-                "summary": "Delete an training related to a store.",
-                "description": "Delete an training by identifier and store identifier.",
+                "summary": "Delete a training related to a store.",
+                "description": "Delete a training by identifier and store identifier.",
                 "operationId": "deletetraining",
                 "parameters": [
                     {

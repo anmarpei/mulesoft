@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/calendars/v1",
+    "basePath": "/gff/calendars/v1",
     "schemes": [
         "https"
     ],
@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/bcb/stores/{storeId}/employees/{employeeId}/calendar": {
+        "/gff/stores/{storeId}/employees/{employeeId}/calendar": {
             "get": {
                 "summary": "Gets a calendar information.",
                 "description": "Gets a calendar related to an employee and store information by identifier.",

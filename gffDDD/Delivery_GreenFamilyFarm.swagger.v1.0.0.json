@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/deliveries/v1",
+    "basePath": "/gff/deliveries/v1",
     "schemes": [
         "https"
     ],
@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/bcb/stores/{storeId}/deliveries/{deliveryId}": {
+        "/gff/stores/{storeId}/deliveries/{deliveryId}": {
             "patch": {
                 "tags": [
                     "delivery"
@@ -161,7 +161,7 @@
                 }
             }
         },
-        "/bcb/stores/{storeId}/deliveries": {
+        "/gff/stores/{storeId}/deliveries": {
             "post": {
                 "tags": [
                     "delivery"

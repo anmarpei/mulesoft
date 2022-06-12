@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "booking - GFF API.",
+        "title": "Booking - GFF API.",
         "description": "API that manages Green Family Farm booking integrations.",
         "version": "1.0.0",
         "contact": {
@@ -9,7 +9,7 @@
         }
     },
     "host": "api.example.com",
-    "basePath": "/bcb/bookings/v1",
+    "basePath": "/gff/bookings/v1",
     "schemes": [
         "https"
     ],
@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/bcb/bookings": {
+        "/gff/bookings": {
             "get": {
                 "summary": "Gets a booking information.",
                 "description": "Gets a booking detail information by identifier.",
@@ -59,10 +59,10 @@
                 }
             }
         },
-        "/bcb/bookings/{bookingId}": {
+        "/gff/bookings/{bookingId}": {
             "get": {
-                "summary": "Gets an booking information.",
-                "description": "Gets an booking detail information by identifier.",
+                "summary": "Gets a booking information.",
+                "description": "Gets a booking detail information by identifier.",
                 "operationId": "getbookingByStoreId",
                 "tags": [
                     "booking"
@@ -145,8 +145,8 @@
                 "tags": [
                     "booking"
                 ],
-                "summary": "Modify an booking data.",
-                "description": "Modify an booking information.",
+                "summary": "Modify a booking data.",
+                "description": "Modify a booking information.",
                 "operationId": "patchbooking",
                 "parameters": [
                     {
@@ -208,7 +208,7 @@
                     "booking"
                 ],
                 "summary": "Edit booking.",
-                "description": "Edit an booking using the bookingId and overwrites all fields for the resource.",
+                "description": "Edit a booking using the bookingId and overwrites all fields for the resource.",
                 "operationId": "putbooking",
                 "parameters": [
                     {
@@ -261,8 +261,8 @@
                 "tags": [
                     "booking"
                 ],
-                "summary": "Delete an booking related to a store.",
-                "description": "Delete an booking by identifier and store identifier.",
+                "summary": "Delete a booking related to a store.",
+                "description": "Delete a booking by identifier and store identifier.",
                 "operationId": "deletebooking",
                 "parameters": [
                     {
