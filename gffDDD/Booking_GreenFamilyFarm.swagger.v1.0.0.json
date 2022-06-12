@@ -1,0 +1,365 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "booking - GFF API.",
+        "description": "API that manages Green Family Farm booking integrations.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Bill Green"
+        }
+    },
+    "host": "api.example.com",
+    "basePath": "/bcb/bookings/v1",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "booking",
+            "description": "Operations that involves bookings information."
+        }
+    ],
+    "paths": {
+        "/bcb/bookings": {
+            "get": {
+                "summary": "Gets a booking information.",
+                "description": "Gets a booking detail information by identifier.",
+                "operationId": "getBookingList",
+                "tags": [
+                    "booking"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/GetBookingResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/bookings/{bookingId}": {
+            "get": {
+                "summary": "Gets an booking information.",
+                "description": "Gets an booking detail information by identifier.",
+                "operationId": "getbookingByStoreId",
+                "tags": [
+                    "booking"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/bookingId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/BookingType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Create a new booking for a store.",
+                "description": "Create a new booking.",
+                "operationId": "createbooking",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/bookingId"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Modify an booking data.",
+                "description": "Modify an booking information.",
+                "operationId": "patchbooking",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/bookingId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/BookingType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/BookingType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Edit booking.",
+                "description": "Edit an booking using the bookingId and overwrites all fields for the resource.",
+                "operationId": "putbooking",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/bookingId"
+                    },
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "description": "booking information.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BookingType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entity updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/BookingType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Invalid format or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Server exception.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Delete an booking related to a store.",
+                "description": "Delete an booking by identifier and store identifier.",
+                "operationId": "deletebooking",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/bookingId"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "204": {
+                        "description": "Entity deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GetBookingResponse": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BookingType"
+                    }
+                }
+            }
+        },
+        "BookingType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "booking identifier.",
+                    "example": 101
+                },
+                "name": {
+                    "type": "string",
+                    "description": "booking name.",
+                    "example": "Hornos HNH"
+                },
+                "bookingCode": {
+                    "type": "string",
+                    "pattern": "((^| )[A-C]-[0-9]+)",
+                    "description": "booking code identification.",
+                    "example": "A-002"
+                }
+            }
+        },
+        "ErrorMng": {
+            "type": "object",
+            "required": [
+                "code",
+                "description"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "bookingId": {
+            "in": "path",
+            "name": "bookingId",
+            "type": "number",
+            "description": "booking identifier.",
+            "required": true
+        }
+    }
+}

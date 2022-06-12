@@ -1,0 +1,365 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Training - GFF API.",
+        "description": "API that manages Green Family Farm Training integrations.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Bill Green"
+        }
+    },
+    "host": "api.example.com",
+    "basePath": "/bcb/trainings/v1",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "training",
+            "description": "Operations that involves trainings information."
+        }
+    ],
+    "paths": {
+        "/bcb/trainings": {
+            "get": {
+                "summary": "Gets a training information.",
+                "description": "Gets a training detail information by identifier.",
+                "operationId": "gettrainingList",
+                "tags": [
+                    "training"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/GetTrainingResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        },
+        "/bcb/trainings/{trainingId}": {
+            "get": {
+                "summary": "Gets an training information.",
+                "description": "Gets an training detail information by identifier.",
+                "operationId": "gettrainingByStoreId",
+                "tags": [
+                    "training"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trainingId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource obtained successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/TrainingType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "training"
+                ],
+                "summary": "Create a new training for a store.",
+                "description": "Create a new training.",
+                "operationId": "createtraining",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trainingId"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Entity created successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "training"
+                ],
+                "summary": "Modify an training data.",
+                "description": "Modify an training information.",
+                "operationId": "patchtraining",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trainingId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Requested data.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "modification"
+                            ],
+                            "properties": {
+                                "modification": {
+                                    "$ref": "#/definitions/TrainingType"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/TrainingType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Bad request or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Internal server error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "training"
+                ],
+                "summary": "Edit training.",
+                "description": "Edit an training using the trainingId and overwrites all fields for the resource.",
+                "operationId": "puttraining",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trainingId"
+                    },
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "description": "training information.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TrainingType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entity updated successfully.",
+                        "schema": {
+                            "$ref": "#/definitions/TrainingType"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "400": {
+                        "description": "Invalid format or functional error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not Found."
+                    },
+                    "500": {
+                        "description": "Server exception.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "training"
+                ],
+                "summary": "Delete an training related to a store.",
+                "description": "Delete an training by identifier and store identifier.",
+                "operationId": "deletetraining",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trainingId"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted."
+                    },
+                    "204": {
+                        "description": "Entity deleted successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorMng"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "GetTrainingResponse": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TrainingType"
+                    }
+                }
+            }
+        },
+        "TrainingType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Training identifier.",
+                    "example": 101
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Training name.",
+                    "example": "Elaboración de pan"
+                },
+                "trainingCode": {
+                    "type": "string",
+                    "pattern": "((^| )[A-C]-[0-9]+)",
+                    "description": "Training code identification.",
+                    "example": "TR-002"
+                }
+            }
+        },
+        "ErrorMng": {
+            "type": "object",
+            "required": [
+                "code",
+                "description"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "trainingId": {
+            "in": "path",
+            "name": "trainingId",
+            "type": "number",
+            "description": "training identifier.",
+            "required": true
+        }
+    }
+}
