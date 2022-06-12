@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/gff/stores/{storeId}/farmers": {
+        "/gff/farmers/{farmerId}/farmers": {
             "get": {
                 "summary": "Gets an farmer information.",
                 "description": "Gets an farmer detail information by identifier.",
@@ -30,14 +30,14 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmerId"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/GetfarmerResponse"
+                            "$ref": "#/definitions/GetFarmerResponse"
                         }
                     },
                     "400": {
@@ -64,7 +64,7 @@
                 }
             }
         },
-        "/gff/stores/{storeId}/farmers/{farmerId}": {
+        "/gff/farmers/{farmerId}": {
             "get": {
                 "summary": "Gets an farmer information.",
                 "description": "Gets an farmer detail information by identifier.",
@@ -74,9 +74,6 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
                         "$ref": "#/parameters/farmerId"
                     }
                 ],
@@ -84,7 +81,7 @@
                     "200": {
                         "description": "Resource obtained successfully.",
                         "schema": {
-                            "$ref": "#/definitions/farmerType"
+                            "$ref": "#/definitions/FarmerType"
                         }
                     },
                     "400": {
@@ -118,9 +115,6 @@
                 "description": "Create a new farmer for a store using store identifier.",
                 "operationId": "createfarmer",
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/storeId"
-                    },
                     {
                         "$ref": "#/parameters/farmerId"
                     }
@@ -161,9 +155,6 @@
                 "operationId": "patchfarmer",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
-                    },
-                    {
                         "$ref": "#/parameters/farmerId"
                     },
                     {
@@ -178,7 +169,7 @@
                             ],
                             "properties": {
                                 "modification": {
-                                    "$ref": "#/definitions/farmerType"
+                                    "$ref": "#/definitions/FarmerType"
                                 }
                             }
                         }
@@ -188,7 +179,7 @@
                     "200": {
                         "description": "Resource updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/farmerType"
+                            "$ref": "#/definitions/FarmerType"
                         }
                     },
                     "202": {
@@ -222,12 +213,9 @@
                     "farmer"
                 ],
                 "summary": "Edit farmer.",
-                "description": "Edit an farmer using the storeId and overwrites all fields for the resource.",
+                "description": "Edit an farmer using the farmerId and overwrites all fields for the resource.",
                 "operationId": "putfarmer",
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/storeId"
-                    },
                     {
                         "$ref": "#/parameters/farmerId"
                     },
@@ -237,7 +225,7 @@
                         "description": "farmer information.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/farmerType"
+                            "$ref": "#/definitions/FarmerType"
                         }
                     }
                 ],
@@ -245,7 +233,7 @@
                     "200": {
                         "description": "Entity updated successfully.",
                         "schema": {
-                            "$ref": "#/definitions/farmerType"
+                            "$ref": "#/definitions/FarmerType"
                         }
                     },
                     "202": {
@@ -279,12 +267,9 @@
                     "farmer"
                 ],
                 "summary": "Delete an farmer related to a store.",
-                "description": "Delete an farmer by identifier and store identifier.",
+                "description": "Delete an farmer by identifier.",
                 "operationId": "deletefarmer",
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/storeId"
-                    },
                     {
                         "$ref": "#/parameters/farmerId"
                     }
@@ -322,7 +307,7 @@
         }
     },
     "definitions": {
-        "GetfarmerResponse": {
+        "GetFarmerResponse": {
             "type": "object",
             "required": [
                 "data"
@@ -331,7 +316,7 @@
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/farmerType"
+                        "$ref": "#/definitions/FarmerType"
                     }
                 }
             }
@@ -365,7 +350,7 @@
                     "$ref": "#/definitions/StoreType"
                 },
                 "farmer": {
-                    "$ref": "#/definitions/farmerType"
+                    "$ref": "#/definitions/FarmerType"
                 }
             }
         },
@@ -389,7 +374,7 @@
                     "$ref": "#/definitions/StoreType"
                 },
                 "farmer": {
-                    "$ref": "#/definitions/farmerType"
+                    "$ref": "#/definitions/FarmerType"
                 }
             }
         },
@@ -425,24 +410,24 @@
                 }
             }
         },
-        "farmerType": {
+        "FarmerType": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer",
-                    "description": "farmer identifier.",
+                    "description": "Farmer identifier.",
                     "example": 101
                 },
                 "name": {
                     "type": "string",
-                    "description": "farmer name.",
+                    "description": "Farmer name.",
                     "example": "Antonio Martínez"
                 },
                 "farmerCode": {
                     "type": "string",
                     "pattern": "((^| )[A-C]-[0-9]+)",
-                    "description": "farmer code identification.",
-                    "example": "A-002"
+                    "description": "Farmer code identification.",
+                    "example": "FAR-002"
                 },
                 "store": {
                     "$ref": "#/definitions/StoreType"
@@ -485,14 +470,7 @@
             "in": "path",
             "name": "farmerId",
             "type": "number",
-            "description": "farmer identifier.",
-            "required": true
-        },
-        "storeId": {
-            "in": "path",
-            "name": "storeId",
-            "type": "number",
-            "description": "Store identifier.",
+            "description": "Farmer identifier.",
             "required": true
         }
     }
