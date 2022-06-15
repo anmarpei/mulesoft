@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/gff/stores/{storeId}/deliveries/{deliveryId}": {
+        "/gff/farms/{farmId}/deliveries/{deliveryId}": {
             "patch": {
                 "tags": [
                     "delivery"
@@ -31,7 +31,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "storeId",
+                        "name": "farmerId",
                         "type": "number",
                         "description": "Store Identifier.",
                         "required": true
@@ -103,7 +103,7 @@
                 "operationId": "deleteDelivery",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmerId"
                     },
                     {
                         "in": "path",
@@ -161,7 +161,7 @@
                 }
             }
         },
-        "/gff/stores/{storeId}/deliveries": {
+        "/gff/farms/{farmerId}/deliveries": {
             "post": {
                 "tags": [
                     "delivery"
@@ -171,7 +171,7 @@
                 "operationId": "createDelivery",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmerId"
                     }
                 ],
                 "responses": {
@@ -211,7 +211,7 @@
                     "type": "integer",
                     "description": "Delivery identifier."
                 },
-                "storeId": {
+                "farmerId": {
                     "type": "number",
                     "description": "Store identifier."
                 },
@@ -260,9 +260,9 @@
             "description": "Employee identifier.",
             "required": true
         },
-        "storeId": {
+        "farmerId": {
             "in": "path",
-            "name": "storeId",
+            "name": "farmerId",
             "type": "number",
             "description": "Store identifier.",
             "required": true

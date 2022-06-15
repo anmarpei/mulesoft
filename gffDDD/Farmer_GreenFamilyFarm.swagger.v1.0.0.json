@@ -20,18 +20,13 @@
         }
     ],
     "paths": {
-        "/gff/farmers/{farmerId}/farmers": {
+        "/gff/farmers": {
             "get": {
                 "summary": "Gets an farmer information.",
                 "description": "Gets an farmer detail information by identifier.",
                 "operationId": "getfarmerList",
                 "tags": [
                     "farmer"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/farmerId"
-                    }
                 ],
                 "responses": {
                     "200": {
