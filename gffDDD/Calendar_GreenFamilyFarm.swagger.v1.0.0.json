@@ -20,7 +20,7 @@
         }
     ],
     "paths": {
-        "/gff/stores/{storeId}/employees/{employeeId}/calendar": {
+        "/gff/farms/{farmId}/employees/{employeeId}/calendar": {
             "get": {
                 "summary": "Gets a calendar information.",
                 "description": "Gets a calendar related to an employee and store information by identifier.",
@@ -30,7 +30,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmId"
                     },
                     {
                         "$ref": "#/parameters/employeeId"
@@ -75,7 +75,7 @@
                 "operationId": "createCalendar",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmId"
                     },
                     {
                         "$ref": "#/parameters/employeeId"
@@ -135,7 +135,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "storeId",
+                        "name": "farmId",
                         "type": "number",
                         "description": "Store Identifier.",
                         "required": true
@@ -203,7 +203,7 @@
                 "operationId": "deleteCalendar",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storeId"
+                        "$ref": "#/parameters/farmId"
                     },
                     {
                         "$ref": "#/parameters/employeeId"
@@ -323,7 +323,7 @@
                     "type": "integer",
                     "description": "Delivery identifier."
                 },
-                "storeId": {
+                "farmId": {
                     "type": "number",
                     "description": "Store identifier."
                 },
@@ -411,9 +411,9 @@
             "description": "Employee identifier.",
             "required": true
         },
-        "storeId": {
+        "farmId": {
             "in": "path",
-            "name": "storeId",
+            "name": "farmId",
             "type": "number",
             "description": "Store identifier.",
             "required": true
